@@ -57,6 +57,7 @@ class FloorplanView extends LitElement {
           1.0
         );
         style.transition = "fill 1s";
+
         if (sensor.target < sensor.value) {
           style.fill = `rgba(255,0,0,${alpha})`;
         } else {

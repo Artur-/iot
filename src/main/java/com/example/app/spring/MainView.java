@@ -6,7 +6,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.server.PWA;
 
 @Route
