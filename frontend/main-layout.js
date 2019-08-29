@@ -28,6 +28,7 @@ class MainLayout extends LitElement {
   render() {
     return html`
       <vaadin-app-layout>
+        <vaadin-drawer-toggle slot="navbar touch-optimized"></vaadin-drawer-toggle>
         <div slot="drawer">
           <h1 style="margin-left: 0.5em">In Da House</h1>
         </div>
