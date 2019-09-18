@@ -10,7 +10,6 @@ import "@vaadin/vaadin-grid";
 
 import "./dashboard-view";
 import "./room-setup/room-setup-view";
-import "./report-view";
 import "./floorplan-view";
 import "./all-rooms-view";
 
@@ -53,12 +52,6 @@ class MainLayout extends LitElement {
             </a>
           </vaadin-tab>
           <vaadin-tab>
-            <a href="report">
-              <iron-icon icon="vaadin:newspaper"></iron-icon>
-              Usage report
-            </a>
-          </vaadin-tab>
-          <vaadin-tab>
             <a href="all-rooms">
               <iron-icon icon="vaadin:stock"></iron-icon>
               All rooms
@@ -82,7 +75,6 @@ class MainLayout extends LitElement {
     router.setRoutes([
       { path: "dashboard", component: "dashboard-view" },
       { path: "sensor-setup", component: "sensor-setup-view" },
-      { path: "report", component: "report-view" },
       { path: "floorplan", component: "floorplan-view" },
       { path: "all-rooms", component: "all-rooms-view" }
     ]);
