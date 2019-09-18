@@ -20,6 +20,7 @@ class RoomInfo extends LitElement {
       }
       vaadin-chart {
         height: 200px;
+        --vaadin-charts-color-1: #ff8d008c;
       }
     `;
   }
@@ -31,15 +32,21 @@ class RoomInfo extends LitElement {
     return html`
       <j-card>
         <div slot="title">${this.room.room}</div>
-        <div>Temperature: ${this.room.temperature}°C</div>
-        <div>Target: ${this.room.target}°C</div>
+        <div>Temperature: ${this.temp(this.room.temperature)}</div>
+        <div>Target: ${this.temp(this.room.target)}</div>
         <vaadin-chart no-legend type="line">
           <vaadin-chart-series
             .values=${this.room.history}
           ></vaadin-chart-series>
+          <vaadin-chart-series color="red"
+            .values="${Array(this.room.history.length).fill(this.room.target)}"
+          ></vaadin-chart-series>
         </vaadin-chart>
       </j-card>
     `;
+  }
+  temp(number) {
+    return Number(number).toFixed(1)+" °C";
   }
   updated() {
     super.updated();

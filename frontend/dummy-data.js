@@ -3,8 +3,9 @@ export const roomData = [
     sensorId: "698af98f",
     room: "Living Room",
     target: 21,
-    temperature: 24,
+    temperature: 24.6,
     power: 1200,
+    heating: false,
     history: [
       24,
       23.9,
@@ -38,8 +39,9 @@ export const roomData = [
     sensorId: "59af20a0",
     room: "Bedroom",
     target: 25,
-    temperature: 24,
+    temperature: 22.09289236837965,
     power: 600,
+    heating: true,
     history: [
       22.0,
       21.96671062916677,
@@ -80,8 +82,9 @@ export const roomData = [
     sensorId: "935a0230",
     room: "Office",
     target: 20,
-    temperature: 20,
+    temperature: 19.13452209312482,
     power: 400,
+    heating: true,
     history: [
       19,
       18.72817116684312,
@@ -121,8 +124,9 @@ export const roomData = [
     sensorId: "11022aff",
     room: "Hall",
     target: 21,
-    temperature: 28,
+    temperature: 30.911688075975707,
     power: 400,
+    heating: false,
     history: [
       29,
       28.75663032594999,
