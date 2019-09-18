@@ -63,12 +63,12 @@
        inkscape:label="office" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:0.27160841"
-       id="foyer"
+       id="hall"
        width="118.11745"
        height="41.993202"
        x="0.1385166"
        y="113.96468"
-       inkscape:label="foyer" />
+       inkscape:label="hall" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.29586396px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 110.42856,31.271724 129.39149,0.14401377 h 34.87338 L 183.87725,32.337777 h 25.97481 V 113.97649 H 75.261316 V 30.860253 Z"
@@ -111,7 +111,7 @@
          id="tspan707"
          x="58.474422"
          y="140.32434"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.88970566px;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.29586396">Foyer</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.88970566px;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.29586396">Hall</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.29586396px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 118.25597,113.96468 91.59609,0.0117 v 95.87172 h -91.59609 z"

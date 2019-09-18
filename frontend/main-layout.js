@@ -8,11 +8,11 @@ import "@vaadin/vaadin-tabs";
 import "@vaadin/vaadin-icons";
 import "@vaadin/vaadin-grid";
 
-import "./overview-view";
-import "./settings-view";
+import "./dashboard-view";
+import "./room-setup/room-setup-view";
 import "./report-view";
 import "./floorplan-view";
-import "./all-sensors-view";
+import "./all-rooms-view";
 
 class MainLayout extends LitElement {
   constructor() {
@@ -28,7 +28,9 @@ class MainLayout extends LitElement {
   render() {
     return html`
       <vaadin-app-layout>
-        <vaadin-drawer-toggle slot="navbar touch-optimized"></vaadin-drawer-toggle>
+        <vaadin-drawer-toggle
+          slot="navbar touch-optimized"
+        ></vaadin-drawer-toggle>
         <div slot="drawer">
           <h1 style="margin-left: 0.5em">In Da House</h1>
         </div>
@@ -39,9 +41,9 @@ class MainLayout extends LitElement {
           style="margin: 0 auto; flex: 1;"
         >
           <vaadin-tab>
-            <a href="overview">
-              <iron-icon icon="vaadin:home"></iron-icon>
-              Overview
+            <a href="dashboard">
+              <iron-icon icon="vaadin:dashboard"></iron-icon>
+              Dashboard 
             </a>
           </vaadin-tab>
           <vaadin-tab>
@@ -57,15 +59,15 @@ class MainLayout extends LitElement {
             </a>
           </vaadin-tab>
           <vaadin-tab>
-            <a href="all-sensors">
+            <a href="all-rooms">
               <iron-icon icon="vaadin:stock"></iron-icon>
-              All sensors
+              All rooms
             </a>
           </vaadin-tab>
           <vaadin-tab>
-            <a href="settings">
+            <a href="sensor-setup">
               <iron-icon icon="vaadin:cogs"></iron-icon>
-              Settings
+              Sensor and room setup
             </a>
           </vaadin-tab>
         </vaadin-tabs>
@@ -76,13 +78,21 @@ class MainLayout extends LitElement {
   }
   firstUpdated() {
     super.firstUpdated();
-    new Router(this.shadowRoot.querySelector(".content")).setRoutes([
-      { path: "overview", component: "overview-view" },
-      { path: "settings", component: "settings-view" },
+    const router = new Router(this.shadowRoot.querySelector(".content"));
+    router.setRoutes([
+      { path: "dashboard", component: "dashboard-view" },
+      { path: "sensor-setup", component: "sensor-setup-view" },
       { path: "report", component: "report-view" },
       { path: "floorplan", component: "floorplan-view" },
-      { path: "all-sensors", component: "all-sensors-view" }
+      { path: "all-rooms", component: "all-rooms-view" }
     ]);
+    window.addEventListener("vaadin-router-location-changed", e => {
+      const appLayout = this.shadowRoot.querySelector("vaadin-app-layout");
+      if (appLayout.overlay) {
+        // Close overlay on mobiles when navigating
+        appLayout.drawerOpened = false;
+      }
+    });
   }
 }
 

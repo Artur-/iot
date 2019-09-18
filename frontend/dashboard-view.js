@@ -2,7 +2,7 @@ import { html, css, LitElement } from "lit-element";
 import "j-elements";
 import "@vaadin/vaadin-charts";
 
-class OverviewView extends LitElement {
+class DashboardView extends LitElement {
   static get styles() {
     return css`
       img {
@@ -179,4 +179,4 @@ class OverviewView extends LitElement {
     super.firstUpdated();
   }
 }
-customElements.define("overview-view", OverviewView);
+customElements.define("dashboard-view", DashboardView);

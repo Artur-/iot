@@ -1,9 +1,10 @@
-export const sensorData = [
+export const roomData = [
   {
-    id: "698af98f",
-    location: "Living Room",
+    sensorId: "698af98f",
+    room: "Living Room",
     target: 21,
-    value: 24,
+    temperature: 24,
+    power: 1200,
     history: [
       24,
       23.9,
@@ -31,13 +32,14 @@ export const sensorData = [
       24.6,
       24.6
     ],
-    floorplan: { x: 94.4, y: 48.4, room: "living-room" }
+    floorplan: { x: 94.4, y: 48.4, roomId: "living-room" }
   },
   {
-    id: "59af20a0",
-    location: "Bedroom",
+    sensorId: "59af20a0",
+    room: "Bedroom",
     target: 25,
-    value: 24,
+    temperature: 24,
+    power: 600,
     history: [
       22.0,
       21.96671062916677,
@@ -71,14 +73,15 @@ export const sensorData = [
     floorplan: {
       x: 94.4,
       y: 93.2,
-      room: "bedroom"
+      roomId: "bedroom"
     }
   },
   {
-    id: "935a0230",
-    location: "Office",
+    sensorId: "935a0230",
+    room: "Office",
     target: 20,
-    value: 20,
+    temperature: 20,
+    power: 400,
     history: [
       19,
       18.72817116684312,
@@ -112,13 +115,14 @@ export const sensorData = [
       19.028787690488343,
       19.13452209312482
     ],
-    floorplan: { x: 2, y: 48, room: "office" }
+    floorplan: { x: 2, y: 48, roomId: "office" }
   },
   {
-    id: "11022aff",
-    location: "Foyer",
+    sensorId: "11022aff",
+    room: "Hall",
     target: 21,
-    value: 28,
+    temperature: 28,
+    power: 400,
     history: [
       29,
       28.75663032594999,
@@ -152,6 +156,6 @@ export const sensorData = [
       31.10753941118982,
       30.911688075975707
     ],
-    floorplan: { x: 33.1, y: 55.3, room: "foyer" }
+    floorplan: { x: 33.1, y: 55.3, roomId: "hall" }
   }
 ];
