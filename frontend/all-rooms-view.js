@@ -28,13 +28,7 @@ class AllRoomsView extends LitElement {
         this.roomData,
         roomData => roomData.sensorId,
         room => html`
-          <div style="display: inline-block">
-            <room-info .room="${room}"></room-info>
-            <div>
-              <vaadin-button>History</vaadin-button>
-              <vaadin-button>Settings</vaadin-button>
-            </div>
-          </div>
+          <room-info .room="${room}"></room-info>
         `
       )}
     `;
