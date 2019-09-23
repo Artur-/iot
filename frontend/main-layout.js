@@ -78,6 +78,14 @@ class MainLayout extends LitElement {
       { path: "floorplan", component: "floorplan-view" },
       { path: "all-rooms", component: "all-rooms-view" }
     ]);
+    const allTabs = Array.from(this.shadowRoot.querySelectorAll("vaadin-tab"));
+    const tab = allTabs.find(
+      tab => tab.firstElementChild.href == window.location.href
+    );
+    if (tab) {
+      const tabsheet = this.shadowRoot.querySelector("vaadin-tabs");
+      tabsheet.selected = Array.from(tabsheet.children).indexOf(tab);
+    }
     window.addEventListener("vaadin-router-location-changed", e => {
       const appLayout = this.shadowRoot.querySelector("vaadin-app-layout");
       if (appLayout.overlay) {
