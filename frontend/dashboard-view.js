@@ -1,6 +1,7 @@
 import { html, css, LitElement } from "lit-element";
 import "j-elements";
 import "@vaadin/vaadin-charts";
+import { roomData } from "./dummy-data";
 
 class DashboardView extends LitElement {
   static get styles() {
@@ -10,7 +11,7 @@ class DashboardView extends LitElement {
       }
       j-card {
         display: inline-block;
-        width: 250px;
+        width: 300px;
         height: 250px;
         vertical-align: top;
       }
@@ -22,7 +23,7 @@ class DashboardView extends LitElement {
   constructor() {
     super();
     this.recentMonths = ["Jun", "Jul", "Aug"];
-    this.recentYears = ["Aug 2017", "Aug 2018", "Aug 2019"];
+    this.recentYears = ["Sep 2017", "Sep 2018", "Sep 2019"];
     this.thisMonthCategories = [
       1,
       2,
@@ -57,23 +58,23 @@ class DashboardView extends LitElement {
       31
     ];
     this.thisMonthConsumption = [
-      10,
       20,
-      35,
-      42,
-      43,
-      45,
-      56,
-      68,
-      80,
-      89,
-      96,
-      110,
-      130,
-      140,
-      150,
-      160,
-      170,
+      40,
+      65,
+      82,
+      103,
+      125,
+      146,
+      168,
+      180,
+      209,
+      216,
+      230,
+      240,
+      255,
+      270,
+      280,
+      300,
       "",
       "",
       "",
@@ -107,76 +108,90 @@ class DashboardView extends LitElement {
       "",
       "",
       "",
-      170,
-      180,
-      190,
-      200,
-      210,
-      220,
-      230,
-      240,
-      250,
-      260,
-      270,
-      280,
-      290,
-      300
+      400,
+      430,
+      460,
+      390,
+      420,
+      450,
+      480,
+      510,
+      540,
+      570,
+      600,
+      630,
+      660,
+      690
     ];
-    this.thisMonthOptions = {
-      yAxis: {
-        max: 400
-      }
-    };
-    this.lastMonthsConsumption = [250, 280, 320];
-    this.lastYearsConsumption = [250, 220, 280];
+    this.lastMonthsConsumption = [560, 850, 722];
+    this.lastYearsConsumption = [560 * 12, 512 * 12, 300 * 12];
 
-    this.heatingCategories = ["Living room", "Bathroom"];
-    this.heatingValues = [50, 20];
+    const heatingRooms = roomData.filter(room => room.heating);
+    this.currentConsumption = heatingRooms
+      .map(room => room.power)
+      .reduce((prev, now) => prev + now);
+    this.heatingCategories = heatingRooms.map(room => room.room);
+    this.heatingValues = heatingRooms.map(room => room.power);
   }
   render() {
     return html`
         <div class="container">
         <j-card>
         <div slot="title">Current consumption</div>
-        <h1>2 857W</h1>
-        <h3>Average: 2 512W</h3>
+        <h1>${this.power(this.currentConsumption)}</h1>
+        <h3>Average: ${this.power(2512)}</h3>
         </j-card>
         <j-card>
         <div slot="title">Recent months</div>
-        <vaadin-chart .categories='${this.recentMonths}'>
-        <vaadin-chart-series type="column" title="Consumption" .values="${this.lastMonthsConsumption}">
+        <vaadin-chart .categories='${this.recentMonths}' no-legend>
+        <vaadin-chart-series type="column" unit="Consumption (kWh)" .values="${
+          this.lastMonthsConsumption
+        }">
   </vaadin-chart-series>
 
         </vaadin-chart>
         </j-card>
         <j-card>
-        <div slot="title">Recent year</div>
-        <vaadin-chart .categories='${this.recentYears}'>
-        <vaadin-chart-series type="column" title="Consumption" .values="${this.lastYearsConsumption}">
+        <div slot="title">Previous years</div>
+        <vaadin-chart .categories='${this.recentYears}' no-legend>
+        <vaadin-chart-series type="column"  unit="Consumption (kWh)"  .values="${
+          this.lastYearsConsumption
+        }">
       </vaadin-chart-series>
 
         </vaadin-chart>
         </j-card>
         <j-card>
         <div slot="title">This month</div>
-        <vaadin-chart .categories='${this.thisMonthCategories}' .additionalOptions="${this.thisMonthOptions}">
-        <vaadin-chart-series type="line" title="Consumption" .values="${this.thisMonthConsumption}">
+        <vaadin-chart .categories='${this.thisMonthCategories}'>
+        <vaadin-chart-series type="line" title="Consumption" .values="${
+          this.thisMonthConsumption
+        }">
       </vaadin-chart-series>
-      <vaadin-chart-series type="line" title="Estimate" .values="${this.thisMonthEstimates}">
+      <vaadin-chart-series type="line" title="Estimate" .values="${
+        this.thisMonthEstimates
+      }">
       </vaadin-chart-series>
 
         </vaadin-chart>
         </j-card>
         <j-card>
         <div slot="title">Currently heating</div>
-        <vaadin-chart no-legend type="bar" .categories='${this.heatingCategories}'>
-        <vaadin-chart-series .values="${this.heatingValues}"></vaadin-chart-series>
+        <vaadin-chart no-legend type="bar" .categories='${
+          this.heatingCategories
+        }'>
+        <vaadin-chart-series .values="${
+          this.heatingValues
+        }"></vaadin-chart-series>
         </vaadin-chart>
         </div>
         `;
   }
   firstUpdated() {
     super.firstUpdated();
+  }
+  power(value) {
+    return value + " W";
   }
 }
 customElements.define("dashboard-view", DashboardView);
