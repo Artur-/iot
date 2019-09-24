@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.app</groupId>
     <artifactId>iot</artifactId>
@@ -12,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <vaadin.version>14.0.2</vaadin.version>
+        <vaadin.version>14.0.5</vaadin.version>
 
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
         <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
@@ -28,7 +30,9 @@
         <pluginRepository>
             <id>central</id>
             <url>https://repo1.maven.org/maven2/</url>
-            <snapshots><enabled>false</enabled></snapshots>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
@@ -36,13 +40,17 @@
         <repository>
             <id>central</id>
             <url>https://repo1.maven.org/maven2/</url>
-            <snapshots><enabled>false</enabled></snapshots>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
         <!-- Repository used by many Vaadin add-ons -->
         <repository>
             <id>Vaadin Directory</id>
             <url>https://maven.vaadin.com/vaadin-addons</url>
-            <snapshots><enabled>false</enabled></snapshots>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -96,8 +104,10 @@
             <artifactId>vaadin-spring-boot-starter</artifactId>
             <exclusions>
                 <!-- Excluding so that webjars are not included. -->
-                <exclusion><groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-core</artifactId></exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -113,7 +123,7 @@
     </dependencies>
 
     <build>
-    	<finalName>${project.artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>
