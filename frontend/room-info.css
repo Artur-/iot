@@ -1,0 +1,17 @@
+.room-info {
+	display: inline-block;
+	font-size: var(- -lumo-font-size, var(- -lumo-font-size-m));
+	font-family: var(- -lumo-font-family);
+	width: 300px;
+}
+
+.room-info j-card {
+	display: inline-block;
+	width: 100%;
+	vertical-align: top;
+}
+
+.room-info vaadin-chart {
+	height: 200px; -
+	-vaadin-charts-color-1: #ff8d008c;
+}
