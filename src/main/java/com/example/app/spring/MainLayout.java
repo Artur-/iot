@@ -3,7 +3,7 @@ package com.example.app.spring;
 import com.example.app.spring.view.AllRooms;
 import com.example.app.spring.view.Dashboard;
 import com.example.app.spring.view.Floorplan;
-import com.example.app.spring.view.SensorSetup;
+import com.example.app.spring.view.RoomSetup;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -35,7 +35,7 @@ public class MainLayout extends AppLayout {
                 "Floorplan"));
         tabs.add(createNavigationTab(AllRooms.class, VaadinIcon.STOCK,
                 "All rooms"));
-        tabs.add(createNavigationTab(SensorSetup.class, VaadinIcon.COGS,
+        tabs.add(createNavigationTab(RoomSetup.class, VaadinIcon.COGS,
                 "Sensor and room setup"));
         tabs.setOrientation(Orientation.VERTICAL);
         tabs.setThemeName("minimal");
