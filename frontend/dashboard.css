@@ -1,0 +1,14 @@
+.dashboard img {
+	width: 100%;
+}
+
+.dashboard j-card {
+	display: inline-block;
+	width: 300px;
+	height: 250px;
+	vertical-align: top;
+}
+
+.dashboard vaadin-chart {
+	height: 200px;
+}
