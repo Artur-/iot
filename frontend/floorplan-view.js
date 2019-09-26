@@ -1,8 +1,6 @@
 import { html, svg, css, LitElement } from "lit-element";
 import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 
-import floorplanSvg from "!!raw-loader!./assets/floorplan.svg";
-
 import { repeat } from "lit-html/directives/repeat";
 import { roomData } from "./dummy-data";
 import "@polymer/paper-tooltip";
@@ -38,19 +36,20 @@ class FloorplanView extends LitElement {
   }
   render() {
     return html`
+      <paper-tooltip
+        id="tooltip"
+        animation-delay="0"
+        manual-mode
+        fit-to-visible-bounds
+        ><room-info id="roominfo"></room-info
+        ><span style="visibility:hidden">a</span></paper-tooltip
+      >
       ${svg`
-         ${html`
-           <paper-tooltip
-             id="tooltip"
-             animation-delay="0"
-             manual-mode
-             fit-to-visible-bounds
-             ><room-info id="roominfo"></room-info
-             ><span style="visibility:hidden">a</span></paper-tooltip
-           >
-         `}
         <svg class="floorplan" viewbox="0 0 100 100">
-        ${unsafeHTML(floorplanSvg)}
+          <foreignObject width="100" height="100">
+            <object id="floorplanobject" data="/floorplan.svg" type="image/svg+xml" @load="${e => this.updateRoomColors()}">
+            </object>
+          </foreignObject>
         ${repeat(
           this.roomData,
           room => room.sensorId,
@@ -71,25 +70,32 @@ class FloorplanView extends LitElement {
     super();
     this.roomData = roomData;
   }
-  updated() {
-    super.updated();
+  updateRoomColors() {
     this.roomData.forEach(room => {
-      if (room.floorplan.roomId) {
-        const roomElement = this.shadowRoot.querySelector(
-          `#${room.floorplan.roomId}`
-        );
-        var style = roomElement.style;
-        const alpha = Math.min(
-          Math.abs(room.target - room.temperature) / 10,
-          1.0
-        );
-        style.transition = "fill 1s";
+      if (!room.floorplan.roomId) {
+        return;
+      }
 
-        if (room.target < room.temperature) {
-          style.fill = `rgba(255,0,0,${alpha})`;
-        } else {
-          style.fill = `rgba(0,0,255,${alpha})`;
-        }
+      const floorplan = this.shadowRoot.querySelector("#floorplanobject");
+
+      const roomElement = floorplan.contentDocument.querySelector(
+        `#${room.floorplan.roomId}`
+      );
+      if (!roomElement) {
+        return;
+      }
+
+      var style = roomElement.style;
+      const alpha = Math.min(
+        Math.abs(room.target - room.temperature) / 10,
+        1.0
+      );
+      style.transition = "fill 1s";
+
+      if (room.target < room.temperature) {
+        style.fill = `rgba(255,0,0,${alpha})`;
+      } else {
+        style.fill = `rgba(0,0,255,${alpha})`;
       }
     });
   }
