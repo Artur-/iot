@@ -1,0 +1,19 @@
+.floorplan  {
+	display: block;
+	position: relative;
+	width: 90%;
+	margin: 5%;
+}
+
+.floorplan .floorplansvg {
+	width: 100%;
+	height: auto;
+}
+
+.floorplan .marker {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}

@@ -12,10 +12,16 @@ import com.vaadin.flow.component.html.Div;
 @JsModule("j-elements/src/j-card.js")
 public class JCard extends Component implements HasComponents {
 
+    private Div titleDiv;
+
     public JCard(String title) {
-        Div div = new Div();
-        div.setText(title);
-        addToSlot("title", div);
+        titleDiv = new Div();
+        addToSlot("title", titleDiv);
+        setTitle(title);
+    }
+
+    public void setTitle(String title) {
+        titleDiv.setText(title);
     }
 
     public void addToSlot(String slot, Component component) {
