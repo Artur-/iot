@@ -1,10 +1,12 @@
-package com.example.app.spring.view;
+package org.artur.iot.view.floorplan;
 
 import java.util.stream.Stream;
 
-import com.example.app.spring.backend.Backend;
-import com.example.app.spring.component.RoomInfo;
-import com.example.app.spring.data.Room;
+import org.artur.iot.backend.Backend;
+import org.artur.iot.component.PaperTooltip;
+import org.artur.iot.component.RoomInfo;
+import org.artur.iot.data.Room;
+
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;

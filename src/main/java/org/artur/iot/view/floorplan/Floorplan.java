@@ -1,9 +1,9 @@
-package com.example.app.spring.view;
+package org.artur.iot.view.floorplan;
 
-import com.example.app.spring.MainLayout;
-import com.example.app.spring.component.RoomInfo;
-import com.vaadin.flow.component.ClientCallable;
-import com.vaadin.flow.component.Component;
+import org.artur.iot.MainLayout;
+import org.artur.iot.component.PaperTooltip;
+import org.artur.iot.component.RoomInfo;
+
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;

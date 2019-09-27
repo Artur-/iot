@@ -1,10 +1,11 @@
-package com.example.app.spring.component;
+package org.artur.iot.component;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
-import com.example.app.spring.data.Room;
+import org.artur.iot.data.Room;
+
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.ListSeries;

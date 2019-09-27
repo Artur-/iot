@@ -1,4 +1,4 @@
-package com.example.app.spring.view;
+package org.artur.iot.view.dashboard;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.example.app.spring.MainLayout;
-import com.example.app.spring.backend.Backend;
-import com.example.app.spring.component.JCard;
-import com.example.app.spring.data.Room;
+import org.artur.iot.MainLayout;
+import org.artur.iot.backend.Backend;
+import org.artur.iot.component.JCard;
+import org.artur.iot.data.Room;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;

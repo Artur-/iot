@@ -1,6 +1,7 @@
-package com.example.app.spring.view;
+package org.artur.iot.view.roomsetup;
 
-import com.example.app.spring.data.Room;
+import org.artur.iot.data.Room;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

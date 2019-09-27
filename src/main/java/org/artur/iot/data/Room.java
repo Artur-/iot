@@ -1,4 +1,4 @@
-package com.example.app.spring.data;
+package org.artur.iot.data;
 
 import java.util.List;
 

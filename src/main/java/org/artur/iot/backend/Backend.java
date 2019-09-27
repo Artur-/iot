@@ -1,11 +1,11 @@
-package com.example.app.spring.backend;
+package org.artur.iot.backend;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.example.app.spring.data.Floorplan;
-import com.example.app.spring.data.Room;
+import org.artur.iot.data.Floorplan;
+import org.artur.iot.data.Room;
 
 public class Backend {
 

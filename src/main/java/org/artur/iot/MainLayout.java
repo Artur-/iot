@@ -1,9 +1,10 @@
-package com.example.app.spring;
+package org.artur.iot;
 
-import com.example.app.spring.view.AllRooms;
-import com.example.app.spring.view.Dashboard;
-import com.example.app.spring.view.Floorplan;
-import com.example.app.spring.view.RoomSetup;
+import org.artur.iot.view.allrooms.AllRooms;
+import org.artur.iot.view.dashboard.Dashboard;
+import org.artur.iot.view.floorplan.Floorplan;
+import org.artur.iot.view.roomsetup.RoomSetup;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;

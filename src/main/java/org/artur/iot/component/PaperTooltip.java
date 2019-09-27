@@ -1,4 +1,4 @@
-package com.example.app.spring.view;
+package org.artur.iot.component;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;

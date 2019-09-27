@@ -1,9 +1,10 @@
-package com.example.app.spring.view;
+package org.artur.iot.view.allrooms;
 
-import com.example.app.spring.MainLayout;
-import com.example.app.spring.backend.Backend;
-import com.example.app.spring.component.RoomInfo;
-import com.example.app.spring.data.Room;
+import org.artur.iot.MainLayout;
+import org.artur.iot.backend.Backend;
+import org.artur.iot.component.RoomInfo;
+import org.artur.iot.data.Room;
+
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 
