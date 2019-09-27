@@ -3,6 +3,7 @@ package org.artur.iot.backend;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.artur.iot.data.Floorplan;
 import org.artur.iot.data.Room;
@@ -121,6 +122,11 @@ public class Backend {
         }
         return rooms;
 
+    }
+
+    public static Optional<Room> getRoom(String id) {
+        return getRoomdata().stream().filter(room -> id.equals(room.getRoom()))
+                .findFirst();
     }
 
 }

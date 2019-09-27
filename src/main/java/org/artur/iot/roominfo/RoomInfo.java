@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
-import org.artur.iot.JsonUtil;
+import org.artur.iot.backend.Backend;
 import org.artur.iot.component.JCard;
 import org.artur.iot.data.Room;
 
@@ -16,9 +16,6 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.webcomponent.WebComponent;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
-
 @CssImport("room-info.css")
 class RoomInfo extends Div {
 
@@ -26,15 +23,11 @@ class RoomInfo extends Div {
 
         public Exporter() {
             super("room-info");
-            addProperty("room", Json.createObject())
-                    .onChange((roominfo, json) -> {
-                        JsonObject roomJson = (JsonObject) json;
-                        if (roomJson.keys().length == 0) {
-                            return;
-                        }
-                        roominfo.setRoom(
-                                JsonUtil.jsonToBean(roomJson, Room.class));
-                    });
+            addProperty("room", "-1").onChange((roominfo, roomId) -> {
+                if ("-1".equals(roomId))
+                    return;
+                roominfo.setRoom(Backend.getRoom(roomId).get());
+            });
         }
 
         @Override

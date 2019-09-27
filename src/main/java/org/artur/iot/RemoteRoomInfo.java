@@ -19,6 +19,6 @@ public class RemoteRoomInfo extends Component {
     }
 
     public void setRoom(Room room) {
-        getElement().setPropertyJson("room", JsonUtil.beanToJson(room));
+        getElement().setProperty("room", room.getRoom());
     }
 }
