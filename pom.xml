@@ -62,5 +62,6 @@
 
     <modules>
         <module>app</module>
+        <module>roominfo</module>
     </modules>
 </project>
