@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.app</groupId>
     <artifactId>iot</artifactId>
@@ -72,7 +73,8 @@
             <!-- Replace artifactId with vaadin-core to use only free components -->
             <artifactId>vaadin</artifactId>
             <exclusions>
-                <!-- Webjars are only needed when running in Vaadin 13 compatibility mode -->
+                <!-- Webjars are only needed when running in Vaadin 13 compatibility 
+                    mode -->
                 <exclusion>
                     <groupId>com.vaadin.webjar</groupId>
                     <artifactId>*</artifactId>
@@ -116,6 +118,10 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench</artifactId>
             <scope>test</scope>
@@ -131,11 +137,9 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!--
-                Take care of synchronizing java dependencies and imports in
-                package.json and main.js files.
-                It also creates webpack.config.js if not exists yet.
-            -->
+            <!-- Take care of synchronizing java dependencies and imports 
+                in package.json and main.js files. It also creates webpack.config.js if not 
+                exists yet. -->
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
@@ -216,7 +220,8 @@
                         </executions>
                     </plugin>
 
-                    <!-- Runs the integration tests (*IT) after the server is started -->
+                    <!-- Runs the integration tests (*IT) after the server 
+                        is started -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -232,7 +237,8 @@
                             <trimStackTrace>false</trimStackTrace>
                             <enableAssertions>true</enableAssertions>
                             <systemPropertyVariables>
-                                <!-- Pass location of downloaded webdrivers to the tests -->
+                                <!-- Pass location of downloaded webdrivers 
+                                    to the tests -->
                                 <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
                             </systemPropertyVariables>
                         </configuration>

@@ -1,19 +1,50 @@
-package org.artur.iot.component;
+package org.artur.iot.roominfo;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
+import org.artur.iot.JsonUtil;
+import org.artur.iot.component.JCard;
 import org.artur.iot.data.Room;
 
+import com.vaadin.flow.component.WebComponentExporter;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.ListSeries;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.webcomponent.WebComponent;
+
+import elemental.json.Json;
+import elemental.json.JsonObject;
 
 @CssImport("room-info.css")
-public class RoomInfo extends Div {
+class RoomInfo extends Div {
+
+    public static class Exporter extends WebComponentExporter<RoomInfo> {
+
+        public Exporter() {
+            super("room-info");
+            addProperty("room", Json.createObject())
+                    .onChange((roominfo, json) -> {
+                        JsonObject roomJson = (JsonObject) json;
+                        if (roomJson.keys().length == 0) {
+                            return;
+                        }
+                        roominfo.setRoom(
+                                JsonUtil.jsonToBean(roomJson, Room.class));
+                    });
+        }
+
+        @Override
+        protected void configureInstance(WebComponent<RoomInfo> webComponent,
+                RoomInfo component) {
+
+        }
+
+    }
+
     private NumberFormat format = DecimalFormat.getNumberInstance();
     private JCard card;
     private ListSeries series;
@@ -71,8 +102,8 @@ public class RoomInfo extends Div {
         series = new ListSeries(values);
 
         targetSeries = new ListSeries(targetValues);
-//        chart.getConfiguration().setSeries(series, targetSeries);
-//        chart.getConfiguration().setSeries();
+        // chart.getConfiguration().setSeries(series, targetSeries);
+        // chart.getConfiguration().setSeries();
         chart.getConfiguration().addSeries(series);
         chart.getConfiguration().addSeries(targetSeries);
 

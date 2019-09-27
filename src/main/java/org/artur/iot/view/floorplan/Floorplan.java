@@ -1,8 +1,8 @@
 package org.artur.iot.view.floorplan;
 
 import org.artur.iot.MainLayout;
+import org.artur.iot.RemoteRoomInfo;
 import org.artur.iot.component.PaperTooltip;
-import org.artur.iot.component.RoomInfo;
 
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
@@ -21,7 +21,7 @@ public class Floorplan extends Div {
         tooltip.setAnimationDelay(0);
         tooltip.setManualMode(true);
         tooltip.setFitToVisibleBounds(true);
-        RoomInfo tooltipRoomInfo = new RoomInfo();
+        RemoteRoomInfo tooltipRoomInfo = new RemoteRoomInfo();
         Span dummy = new Span("a");
         dummy.getStyle().set("visibility", "hidden");
         tooltip.add(tooltipRoomInfo, dummy);

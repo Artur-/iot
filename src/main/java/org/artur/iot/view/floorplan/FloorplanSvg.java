@@ -2,9 +2,9 @@ package org.artur.iot.view.floorplan;
 
 import java.util.stream.Stream;
 
+import org.artur.iot.RemoteRoomInfo;
 import org.artur.iot.backend.Backend;
 import org.artur.iot.component.PaperTooltip;
-import org.artur.iot.component.RoomInfo;
 import org.artur.iot.data.Room;
 
 import com.vaadin.flow.component.ClientCallable;
@@ -23,9 +23,9 @@ import elemental.json.JsonObject;
 public class FloorplanSvg extends Component {
 
     private PaperTooltip tooltip;
-    private RoomInfo tooltipRoominfo;
+    private RemoteRoomInfo tooltipRoominfo;
 
-    public FloorplanSvg(PaperTooltip tooltip, RoomInfo tooltipRoomInfo) {
+    public FloorplanSvg(PaperTooltip tooltip, RemoteRoomInfo tooltipRoomInfo) {
         this.tooltip = tooltip;
         this.tooltipRoominfo = tooltipRoomInfo;
         getElement().setProperty("svgUrl", "floorplan.svg");

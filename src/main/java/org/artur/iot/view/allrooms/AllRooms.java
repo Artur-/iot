@@ -1,8 +1,8 @@
 package org.artur.iot.view.allrooms;
 
 import org.artur.iot.MainLayout;
+import org.artur.iot.RemoteRoomInfo;
 import org.artur.iot.backend.Backend;
-import org.artur.iot.component.RoomInfo;
 import org.artur.iot.data.Room;
 
 import com.vaadin.flow.component.html.Div;
@@ -13,7 +13,7 @@ public class AllRooms extends Div {
 
     public AllRooms() {
         for (Room room : Backend.getRoomdata()) {
-            add(new RoomInfo(room));
+            add(new RemoteRoomInfo(room));
         }
     }
 }
