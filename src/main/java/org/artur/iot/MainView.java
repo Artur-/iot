@@ -1,4 +1,4 @@
-package com.example.app.spring;
+package org.artur.iot;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
