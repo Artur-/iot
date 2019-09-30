@@ -10,6 +10,7 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.tabs.Tab;
@@ -21,6 +22,7 @@ import com.vaadin.flow.server.VaadinService;
 
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
 @CssImport("mainlayout.css")
+@JsModule("http://localhost:8080/iot-bundle/VAADIN/build/index.nocache.js")
 public class MainLayout extends AppLayout {
 
     public MainLayout() {

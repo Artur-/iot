@@ -7,7 +7,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JavaScript;
 
 @Tag("room-info")
-@JavaScript("//localhost:8080/web-component/room-info.js")
+@JavaScript("http://localhost:8080/iot-roominfo/web-component/room-info.js")
 // @JsModule("/otherapp/foo.js")
 public class RemoteRoomInfo extends Component {
 
