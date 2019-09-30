@@ -1,17 +1,23 @@
 package org.artur.iot;
 
 import org.artur.iot.data.Room;
+import org.artur.iot.workaround.Workaround;
 
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JavaScript;
 
 @Tag("room-info")
-@JavaScript("http://localhost:8080/iot-roominfo/web-component/room-info.js")
-// @JsModule("/otherapp/foo.js")
 public class RemoteRoomInfo extends Component {
 
     public RemoteRoomInfo() {
+    }
+
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        super.onAttach(attachEvent);
+        Workaround.addJSModule(attachEvent.getUI(),
+                "/iot-roominfo/web-component/room-info.js");
     }
 
     public RemoteRoomInfo(Room room) {

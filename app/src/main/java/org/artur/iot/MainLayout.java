@@ -4,7 +4,9 @@ import org.artur.iot.view.allrooms.AllRooms;
 import org.artur.iot.view.dashboard.Dashboard;
 import org.artur.iot.view.floorplan.Floorplan;
 import org.artur.iot.view.roomsetup.RoomSetup;
+import org.artur.iot.workaround.Workaround;
 
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -22,7 +24,6 @@ import com.vaadin.flow.server.VaadinService;
 
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
 @CssImport("mainlayout.css")
-@JsModule("http://localhost:8080/iot-bundle/VAADIN/build/index.nocache.js")
 public class MainLayout extends AppLayout {
 
     public MainLayout() {
