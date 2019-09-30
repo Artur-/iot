@@ -32,6 +32,8 @@ module.exports = merge(flowDefaults, {
                 return true;
               if (row.startsWith("import '."))
                 return true;
+              if (row.startsWith("import 'Frontend/"))
+                return true;
               if (row.startsWith("import "))
                 return false;
               
