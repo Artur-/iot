@@ -24,7 +24,7 @@ module.exports = merge(flowDefaults, {
           fileNameOfTheFlowGeneratedMainEntryPoint,
           "utf8"
         );
-        console.log(original);
+//        console.log(original);
         const filtered = original
           .split("\n")
           .filter(row => {
@@ -40,7 +40,7 @@ module.exports = merge(flowDefaults, {
               return true;
               }
             ).join("\n");
-        console.log(filtered);
+//        console.log(filtered);
         fs.writeFileSync(
           filteredFileNameOfTheFlowGeneratedMainEntryPoint,
           filtered
