@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <vaadin.version>14.0.5</vaadin.version>
+        <vaadin.version>14.0.7</vaadin.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
