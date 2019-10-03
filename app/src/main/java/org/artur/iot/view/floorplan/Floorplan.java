@@ -11,7 +11,7 @@ import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "floorplan", layout = MainLayout.class)
-@CssImport("floorplan.css")
+@CssImport("./floorplan.css")
 public class Floorplan extends Div {
 
     public Floorplan() {

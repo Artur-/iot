@@ -16,7 +16,7 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.webcomponent.WebComponent;
 
-@CssImport("room-info.css")
+@CssImport("./room-info.css")
 class RoomInfo extends Div {
 
     public static class Exporter extends WebComponentExporter<RoomInfo> {

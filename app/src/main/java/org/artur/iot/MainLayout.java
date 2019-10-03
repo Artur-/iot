@@ -1,18 +1,10 @@
 package org.artur.iot;
 
-import org.artur.iot.view.allrooms.AllRooms;
-import org.artur.iot.view.dashboard.Dashboard;
-import org.artur.iot.view.floorplan.Floorplan;
-import org.artur.iot.view.roomsetup.RoomSetup;
-import org.artur.iot.workaround.Workaround;
-
-import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.tabs.Tab;
@@ -22,8 +14,13 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinService;
 
+import org.artur.iot.view.allrooms.AllRooms;
+import org.artur.iot.view.dashboard.Dashboard;
+import org.artur.iot.view.floorplan.Floorplan;
+import org.artur.iot.view.roomsetup.RoomSetup;
+
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
-@CssImport("mainlayout.css")
+@CssImport("./mainlayout.css")
 public class MainLayout extends AppLayout {
 
     public MainLayout() {

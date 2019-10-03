@@ -25,7 +25,7 @@ import com.vaadin.flow.router.RouteAlias;
 
 @RouteAlias(value = "", layout = MainLayout.class)
 @Route(value = "dashboard", layout = MainLayout.class)
-@CssImport("dashboard.css")
+@CssImport("./dashboard.css")
 public class Dashboard extends Div {
 
     private int currentConsumption;
