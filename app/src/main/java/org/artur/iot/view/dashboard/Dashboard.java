@@ -21,7 +21,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 
+@RouteAlias(value = "", layout = MainLayout.class)
 @Route(value = "dashboard", layout = MainLayout.class)
 @CssImport("dashboard.css")
 public class Dashboard extends Div {
