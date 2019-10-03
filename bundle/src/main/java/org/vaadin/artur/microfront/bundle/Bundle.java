@@ -6,6 +6,7 @@ import org.vaadin.artur.github_corner.GitHubCorner;
 
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
@@ -54,6 +55,7 @@ public class Bundle {
     private Dialog dialog = new Dialog();
     private Select select = new Select();
     private AppLayout applayout = new AppLayout();
+    private DrawerToggle toggle = new DrawerToggle();
     private Board board = new Board();
     private Notification notification = new Notification();
     private Chart charts = new Chart();
