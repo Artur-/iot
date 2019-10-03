@@ -6,8 +6,13 @@ const merge = require("webpack-merge");
 // prettier-ignore
 const flowDefaults = require('./webpack.generated.js');
 const replaceInFile = require("replace-in-file");
-const indexNoCacheFile = `${flowDefaults.output.path}/build/index.nocache.js`;
-const fs = require('fs');
+
+const path = require("path");
+const indexNoCacheSrc = path.resolve(__dirname, "index.nocache.js");
+const indexNoCacheDir = `${flowDefaults.output.path}/build`;
+const indexNoCacheFile = `${indexNoCacheDir}/index.nocache.js`;
+const fs = require("fs");
+const mkdirp = require("mkdirp");
 
 module.exports = merge(flowDefaults, {
   plugins: [
@@ -17,10 +22,21 @@ module.exports = merge(flowDefaults, {
           .getStats()
           .toJson()
           .assetsByChunkName.bundle.replace(/.*\//, "");
-        fs.copyFile("index.nocache.js", indexNoCacheFile, err => {
+
+          mkdirp.sync(indexNoCacheDir, function(err) {
+          if (err) console.error(err);
+          else console.log("pow!");
+        });
+
+        fs.copyFile(indexNoCacheSrc, indexNoCacheFile, err => {
           if (err) throw err;
         });
-        console.log("Using bundle name "+bundleFilename+ " to update "+indexNoCacheFile);
+        console.log(
+          "Using bundle name " +
+            bundleFilename +
+            " to update " +
+            indexNoCacheFile
+        );
         const options = {
           files: indexNoCacheFile,
           from: /#bundleFileName#/g,
