@@ -1,4 +1,4 @@
-package org.artur.iot.db.data;
+package org.artur.iot.data;
 
 import javax.persistence.Embeddable;
 

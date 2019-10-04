@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.artur.iot.db.data.Floorplan;
-import org.artur.iot.db.data.Room;
+import org.artur.iot.data.Floorplan;
+import org.artur.iot.data.Room;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +22,7 @@ public class InitDB {
     public void init() {
         // Initialize db with some demo data
         repo.saveAll(getInitialRoomdata());
+        repo.flush();
         LoggerFactory.getLogger(getClass()).info("Initialized database with {} rooms", repo.count());
     }
 

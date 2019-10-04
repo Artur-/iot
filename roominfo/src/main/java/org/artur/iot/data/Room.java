@@ -3,6 +3,7 @@ package org.artur.iot.data;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,6 +18,7 @@ public class Room {
     private boolean heating;
     @ElementCollection
     private List<Double> history;
+    @Embedded
     private Floorplan floorplan;
 
     public String getSensorId() {
