@@ -11,8 +11,11 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.Tabs.Orientation;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.server.PageConfigurator;
 import com.vaadin.flow.server.VaadinService;
+import com.vaadin.flow.server.InitialPageSettings.WrapMode;
 
 import org.artur.iot.view.allrooms.AllRooms;
 import org.artur.iot.view.dashboard.Dashboard;
@@ -21,7 +24,7 @@ import org.artur.iot.view.roomsetup.RoomSetup;
 
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
 @CssImport("./mainlayout.css")
-public class MainLayout extends AppLayout {
+public class MainLayout extends AppLayout implements PageConfigurator {
 
     public MainLayout() {
         H1 header = new H1("In Da House");
@@ -55,5 +58,11 @@ public class MainLayout extends AppLayout {
         tab.add(link);
 
         return new Tab(link);
+    }
+
+    @Override
+    public void configurePage(InitialPageSettings settings) {
+        settings.addInlineWithContents(
+                "<script type='module' src='/iot-bundle/VAADIN/build/index.nocache.js'></script>", WrapMode.NONE);
     }
 }
