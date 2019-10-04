@@ -4,9 +4,10 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
-import org.artur.iot.backend.Backend;
+import org.artur.iot.backend.RoomRepository;
 import org.artur.iot.component.JCard;
 import org.artur.iot.data.Room;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.flow.component.WebComponentExporter;
 import com.vaadin.flow.component.charts.Chart;
@@ -19,6 +20,9 @@ import com.vaadin.flow.component.webcomponent.WebComponent;
 @CssImport("./room-info.css")
 class RoomInfo extends Div {
 
+    @Autowired
+    private RoomRepository repo;
+
     public static class Exporter extends WebComponentExporter<RoomInfo> {
 
         public Exporter() {
@@ -26,13 +30,12 @@ class RoomInfo extends Div {
             addProperty("room", "-1").onChange((roominfo, roomId) -> {
                 if ("-1".equals(roomId))
                     return;
-                roominfo.setRoom(Backend.getRoom(roomId).get());
+                roominfo.setRoom(roomId);
             });
         }
 
         @Override
-        protected void configureInstance(WebComponent<RoomInfo> webComponent,
-                RoomInfo component) {
+        protected void configureInstance(WebComponent<RoomInfo> webComponent, RoomInfo component) {
 
         }
 
@@ -78,14 +81,17 @@ class RoomInfo extends Div {
         setRoom(room);
     }
 
+    private void setRoom(String roomId) {
+        setRoom(repo.getOne(roomId));
+    }
+
     public void setRoom(Room room) {
         card.setTitle(room.getRoom());
 
         temperature.setText("Temperature: " + temp(room.getTemperature()));
         target.setText("Target: " + temp(room.getTarget()));
 
-        Number[] values = room.getHistory()
-                .toArray(new Number[room.getHistory().size()]);
+        Number[] values = room.getHistory().toArray(new Number[room.getHistory().size()]);
         // series.setData(values);
 
         Number[] targetValues = new Number[room.getHistory().size()];

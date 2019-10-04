@@ -2,13 +2,20 @@ package org.artur.iot.data;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Room {
+    @Id
     private String sensorId;
     private String room;
     private double target;
     private double temperature;
     private int power;
     private boolean heating;
+    @ElementCollection
     private List<Double> history;
     private Floorplan floorplan;
 
