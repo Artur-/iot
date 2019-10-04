@@ -3,6 +3,9 @@ package org.artur.iot.view.floorplan;
 import org.artur.iot.MainLayout;
 import org.artur.iot.RemoteRoomInfo;
 import org.artur.iot.component.PaperTooltip;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
 
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
@@ -14,7 +17,11 @@ import com.vaadin.flow.router.Route;
 @CssImport("./floorplan.css")
 public class Floorplan extends Div {
 
-    public Floorplan() {
+    @Autowired
+    private FloorplanSvg floorplanSvg;
+
+    @PostConstruct
+    public void init() {
         setClassName("floorplan");
         PaperTooltip tooltip = new PaperTooltip();
         tooltip.setId("tooltip");
@@ -32,8 +39,8 @@ public class Floorplan extends Div {
         style.set(PaperTooltip.CSS_OPACITY, "1");
         style.set(PaperTooltip.CSS_DURATION_IN, "200ms");
         add(tooltip);
-
-        add(new FloorplanSvg(tooltip, tooltipRoomInfo));
+        floorplanSvg.setInfo(tooltip, tooltipRoomInfo);
+        add(floorplanSvg);
     }
 
 }

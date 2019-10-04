@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.artur.iot.MainLayout;
-import org.artur.iot.backend.Backend;
-import org.artur.iot.component.JCard;
-import org.artur.iot.data.Room;
+import javax.annotation.PostConstruct;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.charts.Chart;
@@ -22,6 +19,13 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+
+import org.artur.iot.MainLayout;
+import org.artur.iot.backend.RoomRepository;
+import org.artur.iot.component.JCard;
+import org.artur.iot.data.Room;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RouteAlias(value = "", layout = MainLayout.class)
 @Route(value = "dashboard", layout = MainLayout.class)
@@ -39,19 +43,21 @@ public class Dashboard extends Div {
     private String[] heatingCategories;
     private Integer[] heatingValues;
 
-    public Dashboard() {
+    @Autowired
+    private RoomRepository repo;
+
+    @PostConstruct
+    public void init() {
         setClassName("dashboard");
         this.recentMonthsCategories = new String[] { "Jun", "Jul", "Aug" };
         this.recentMonthsValues = new Number[] { 560, 850, 722 };
-        this.recentYearsCategories = new String[] { "Sep 2017", "Sep 2018",
-                "Sep 2019" };
+        this.recentYearsCategories = new String[] { "Sep 2017", "Sep 2018", "Sep 2019" };
         this.recentYearsValues = new Number[] { 560 * 12, 512 * 12, 300 * 12 };
 
         int daysInMonth = YearMonth.now().lengthOfMonth();
         int dayOfMonth = LocalDate.now().getDayOfMonth();
 
-        this.thisMonthCategories = (String[]) IntStream
-                .range(1, daysInMonth + 1).boxed().map(i -> "" + i)
+        this.thisMonthCategories = (String[]) IntStream.range(1, daysInMonth + 1).boxed().map(i -> "" + i)
                 .toArray(String[]::new);
         this.thisMonthValues = new Double[daysInMonth];
         for (int i = 0; i < dayOfMonth; i++) {
@@ -59,23 +65,19 @@ public class Dashboard extends Div {
         }
         thisMonthEstimates = new Double[daysInMonth];
 
-        double delta = (thisMonthValues[dayOfMonth - 1] - thisMonthValues[0])
-                / (dayOfMonth - 1);
+        double delta = (thisMonthValues[dayOfMonth - 1] - thisMonthValues[0]) / (dayOfMonth - 1);
 
         for (int i = dayOfMonth; i < daysInMonth; i++) {
             thisMonthEstimates[i] = i * delta;
         }
 
-        List<Room> roomData = Backend.getRoomdata();
-        List<Room> heatingRooms = roomData.stream()
-                .filter(room -> room.isHeating()).collect(Collectors.toList());
-        heatingCategories = heatingRooms.stream().map((room -> room.getRoom()))
-                .toArray(String[]::new);
-        heatingValues = heatingRooms.stream().map((room -> room.getPower()))
-                .toArray(Integer[]::new);
-        this.currentConsumption = heatingRooms.stream()
-                .map(room -> room.getPower()).reduce((prev, now) -> prev + now)
-                .get();
+        List<Room> roomData = repo.findAll();
+        LoggerFactory.getLogger(getClass()).warn("Found {} rooms", roomData.size());
+        List<Room> heatingRooms = roomData.stream().filter(room -> room.isHeating()).collect(Collectors.toList());
+        heatingCategories = heatingRooms.stream().map((room -> room.getRoom())).toArray(String[]::new);
+        heatingValues = heatingRooms.stream().map((room -> room.getPower())).toArray(Integer[]::new);
+        this.currentConsumption = heatingRooms.stream().map(room -> room.getPower()).reduce((prev, now) -> prev + now)
+                .orElseGet(() -> 0);
 
         Div container = new Div();
         container.setClassName("container");

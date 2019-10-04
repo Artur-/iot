@@ -13,5 +13,6 @@
         <module>bundle</module>
         <module>components</module>
         <module>roominfo</module>
+        <module>db</module>
     </modules>
 </project>

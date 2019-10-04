@@ -1,5 +1,8 @@
 package org.artur.iot.data;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Floorplan {
 
     private double x, y;

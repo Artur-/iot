@@ -1,8 +1,11 @@
 package org.artur.iot.view.roomsetup;
 
 import org.artur.iot.MainLayout;
-import org.artur.iot.backend.Backend;
+import org.artur.iot.backend.RoomRepository;
 import org.artur.iot.data.Room;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -15,11 +18,15 @@ public class RoomSetup extends Div {
     private Grid<Room> grid;
     private RoomSetupDialog dialog = new RoomSetupDialog();
 
-    public RoomSetup() {
+    @Autowired
+    private RoomRepository repo;
+
+    @PostConstruct
+    public void init() {
         grid = new Grid<>(Room.class);
         grid.setColumns("sensorId", "room", "temperature");
 
-        grid.setItems(Backend.getRoomdata());
+        grid.setItems(repo.findAll());
         grid.getColumnByKey("sensorId").setHeader("Sensor");
         grid.getColumnByKey("room").setHeader("Name");
         grid.getColumnByKey("temperature").setHeader("Last reading");
