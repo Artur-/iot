@@ -16,5 +16,5 @@
     "raw-loader": "3.0.0",
     "compression-webpack-plugin": "3.0.0"
   },
-  "vaadinAppPackageHash": "cf7cc5572dbd4e805d7c41ea29d192909b25b41cf880d252af1ba072bdb216c9"
+  "vaadinAppPackageHash": "9fc4808f9d90e2e2c3e58ae72243925cc32d4f0085fea54aba31d03063cb630e"
 }
