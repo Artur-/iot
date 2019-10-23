@@ -13,6 +13,8 @@ import org.artur.iot.backend.RoomRepository;
 import org.artur.iot.component.PaperTooltip;
 import org.artur.iot.data.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 
 import elemental.json.Json;
 import elemental.json.JsonArray;
@@ -22,6 +24,7 @@ import elemental.json.JsonObject;
 @Tag("floorplan-svg")
 @NpmPackage(value = "lit-element", version = "^2.2.1")
 @org.springframework.stereotype.Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class FloorplanSvg extends Component {
 
     private PaperTooltip tooltip;
