@@ -4,10 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
-import org.artur.iot.backend.RoomRepository;
-import org.artur.iot.component.JCard;
-import org.artur.iot.data.Room;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
 
 import com.vaadin.flow.component.WebComponentExporter;
 import com.vaadin.flow.component.charts.Chart;
@@ -16,6 +13,12 @@ import com.vaadin.flow.component.charts.model.ListSeries;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.webcomponent.WebComponent;
+
+import org.artur.iot.backend.RoomRepository;
+import org.artur.iot.component.JCard;
+import org.artur.iot.data.Room;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @CssImport("./room-info.css")
 class RoomInfo extends Div {
@@ -82,7 +85,7 @@ class RoomInfo extends Div {
     }
 
     private void setRoom(String roomId) {
-        setRoom(repo.getOne(roomId));
+        setRoom(repo.getByRoom(roomId));
     }
 
     public void setRoom(Room room) {

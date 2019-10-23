@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 
 @Entity
@@ -16,7 +17,7 @@ public class Room {
     private double temperature;
     private int power;
     private boolean heating;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Double> history;
     @Embedded
     private Floorplan floorplan;
