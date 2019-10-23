@@ -29,8 +29,7 @@ Used by `roominfo`, `floorplan` and `app`.
 The shared JavaScript bundle used in the browser. Contains all components for the full application to avoid loading the same components for all different parts. This resolves both a performance issue (load button only once) and a technical limitation (the same web component / custom element / tag can only be defined once for a whole web page).
 
 ### db
-Sets up an in memory database for the whole application. In a real world
-application this would be removed and replaced by a real database.
+Sets up an in memory database for the whole application. In a real world application this would be removed and replaced by a real database.
 
 
 ## Building all parts
@@ -39,7 +38,18 @@ application this would be removed and replaced by a real database.
 mvn clean install
 ```
 
-## Deploying
+## Running the project
+
+First you need to start the H2 DB. This is accessed by multiple war files so
+it should be started outside the servlet container:
+```
+java -cp ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar org.h2.tools.Server -ifNotExists
+```
+
+In real cases, you would use Postgres, MySQL or some other external database and configure that in `*/src/main/resources/application.properties` instead of H2.
+
+When the DB is running, deploy the war files to your server, e.g. Apache
+Tomcat
 ```
 cp */target/*.war ~/tomcat-folder/webapps/
 ```
