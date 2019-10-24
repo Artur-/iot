@@ -26,13 +26,15 @@ import com.vaadin.flow.server.VaadinService;
 @CssImport("./mainlayout.css")
 public class MainLayout extends AppLayout implements PageConfigurator {
 
+    private Tabs tabs;
+
     public MainLayout() {
         H1 header = new H1("In Da House");
         header.getStyle().set("margin-left", "0.5em");
         addToNavbar(true, new DrawerToggle());
         addToDrawer(header);
 
-        Tabs tabs = new Tabs();
+        tabs = new Tabs();
         tabs.add(createNavigationTab(Dashboard.class, VaadinIcon.DASHBOARD,
                 "Dashboard"));
         tabs.add(createNavigationTab(RemoteFloorplan.class,
@@ -49,10 +51,21 @@ public class MainLayout extends AppLayout implements PageConfigurator {
         addToDrawer(tabs);
     }
 
+    private void highlight(RouterLink link, boolean active) {
+        if (active) {
+            tabs.setSelectedTab((Tab) link.getParent().get());
+        }
+    }
+
     private Tab createNavigationTab(Class<? extends Component> targetClass,
             VaadinIcon icon, String text) {
         Tab tab = new Tab();
         RouterLink link = new RouterLink();
+        link.setHighlightCondition((l, event) -> {
+            return targetClass
+                    .isAssignableFrom(event.getActiveChain().get(0).getClass());
+        });
+        link.setHighlightAction(this::highlight);
         link.setRoute(VaadinService.getCurrent().getRouter(), targetClass);
         link.add(icon.create(), new Text(text));
         tab.add(link);
