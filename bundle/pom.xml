@@ -9,10 +9,12 @@
     <packaging>war</packaging>
 
     <properties>
-        <vaadin.version>14.1.0.alpha4</vaadin.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <vaadin.version>14.1.0.alpha4</vaadin.version>
+        <flow.version>2.2.0.alpha1</flow.version>
     </properties>
 
     <repositories>
@@ -45,6 +47,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-bom</artifactId>
+                <version>${flow.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-bom</artifactId>

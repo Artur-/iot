@@ -21,6 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <vaadin.version>14.1.0.alpha4</vaadin.version>
+        <flow.version>2.2.0.alpha1</flow.version>
 
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
         <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
@@ -56,6 +57,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-bom</artifactId>
+                <version>${flow.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-bom</artifactId>
