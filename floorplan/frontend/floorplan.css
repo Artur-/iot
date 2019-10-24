@@ -1,7 +1,8 @@
-.floorplan  {
+.floorplan {
 	display: block;
 	position: relative;
 	width: 90%;
+	max-width: 800px;
 	margin: 5%;
 }
 

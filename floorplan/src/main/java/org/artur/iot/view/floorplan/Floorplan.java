@@ -1,8 +1,10 @@
 package org.artur.iot.view.floorplan;
 
+import com.vaadin.flow.component.WebComponentExporter;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.webcomponent.WebComponent;
 import com.vaadin.flow.dom.Style;
 
 import org.artur.iot.RemoteRoomInfo;
@@ -10,6 +12,19 @@ import org.artur.iot.component.PaperTooltip;
 
 @CssImport("./floorplan.css")
 public class Floorplan extends Div {
+
+    public static class Exporter extends WebComponentExporter<Floorplan> {
+        public Exporter() {
+            super("floorplan-view");
+        }
+
+        @Override
+        protected void configureInstance(WebComponent<Floorplan> webComponent,
+                Floorplan component) {
+
+        }
+
+    }
 
     public Floorplan() {
         setClassName("floorplan");

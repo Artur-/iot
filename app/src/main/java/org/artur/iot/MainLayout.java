@@ -1,5 +1,10 @@
 package org.artur.iot;
 
+import org.artur.iot.view.allrooms.AllRooms;
+import org.artur.iot.view.dashboard.Dashboard;
+import org.artur.iot.view.floorplan.RemoteFloorplan;
+import org.artur.iot.view.roomsetup.RoomSetup;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -12,15 +17,10 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.Tabs.Orientation;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.InitialPageSettings;
+import com.vaadin.flow.server.InitialPageSettings.WrapMode;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.PageConfigurator;
 import com.vaadin.flow.server.VaadinService;
-import com.vaadin.flow.server.InitialPageSettings.WrapMode;
-
-import org.artur.iot.view.allrooms.AllRooms;
-import org.artur.iot.view.dashboard.Dashboard;
-import org.artur.iot.view.floorplan.Floorplan;
-import org.artur.iot.view.roomsetup.RoomSetup;
 
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
 @CssImport("./mainlayout.css")
@@ -35,8 +35,8 @@ public class MainLayout extends AppLayout implements PageConfigurator {
         Tabs tabs = new Tabs();
         tabs.add(createNavigationTab(Dashboard.class, VaadinIcon.DASHBOARD,
                 "Dashboard"));
-        tabs.add(createNavigationTab(Floorplan.class, VaadinIcon.THIN_SQUARE,
-                "Floorplan"));
+        tabs.add(createNavigationTab(RemoteFloorplan.class,
+                VaadinIcon.THIN_SQUARE, "Floorplan"));
         tabs.add(createNavigationTab(AllRooms.class, VaadinIcon.STOCK,
                 "All rooms"));
         tabs.add(createNavigationTab(RoomSetup.class, VaadinIcon.COGS,
