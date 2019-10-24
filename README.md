@@ -48,8 +48,12 @@ java -cp ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar org.h2.tools.
 
 In real cases, you would use Postgres, MySQL or some other external database and configure that in `*/src/main/resources/application.properties` instead of H2.
 
-When the DB is running, deploy the war files to your server, e.g. Apache
-Tomcat
+When the DB is running, deploy the `db` war to your server, e.g. Apache Tomcat. This should be deployed first as it initializes the database tables.
+```
+cp db/target/*.war ~/tomcat-folder/webapps/
+```
+
+Then deploy the rest of the war files
 ```
 cp */target/*.war ~/tomcat-folder/webapps/
 ```
