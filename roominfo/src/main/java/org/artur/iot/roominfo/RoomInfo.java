@@ -1,5 +1,6 @@
 package org.artur.iot.roominfo;
 
+import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -9,7 +10,9 @@ import javax.annotation.PostConstruct;
 import com.vaadin.flow.component.WebComponentExporter;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.ListSeries;
+import com.vaadin.flow.component.charts.model.Series;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.webcomponent.WebComponent;
@@ -95,19 +98,12 @@ class RoomInfo extends Div {
         target.setText("Target: " + temp(room.getTarget()));
 
         Number[] values = room.getHistory().toArray(new Number[room.getHistory().size()]);
-        // series.setData(values);
-
+        series.setData(values);
         Number[] targetValues = new Number[room.getHistory().size()];
         Arrays.fill(targetValues, room.getTarget());
-        // targetSeries.setData(targetValues);
-
-        series = new ListSeries(values);
-
-        targetSeries = new ListSeries(targetValues);
-        // chart.getConfiguration().setSeries(series, targetSeries);
-        // chart.getConfiguration().setSeries();
-        chart.getConfiguration().addSeries(series);
-        chart.getConfiguration().addSeries(targetSeries);
+        targetSeries.setData(targetValues);
+        Workaround.fireUpdate(series);
+        Workaround.fireUpdate(targetSeries);
 
     }
 
