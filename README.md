@@ -51,6 +51,8 @@ or by running `mvn install` for each part separately
 
 ## Running the project
 
+The project has been tested using Apache Tomcat 8.5.47 and 9.0.27. Older versions might have strange issues.
+
 First you need to start the H2 DB. This is accessed by multiple war files so
 it should be started outside the servlet container:
 ```
@@ -59,7 +61,7 @@ java -cp ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar org.h2.tools.
 
 In real cases, you would use Postgres, MySQL or some other external database and configure that in `*/src/main/resources/application.properties` instead of H2.
 
-When the DB is running, deploy the `db` war to your server, e.g. Apache Tomcat. This should be deployed first as it initializes the database tables.
+When the DB is running, deploy the `db` war to your server. This should be deployed first as it initializes the database tables.
 ```
 cp db/target/*.war ~/tomcat-folder/webapps/
 ```
