@@ -22,7 +22,7 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.PageConfigurator;
 import com.vaadin.flow.server.VaadinService;
 
-@PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
+@PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base", enableInstallPrompt = false)
 @CssImport("./mainlayout.css")
 public class MainLayout extends AppLayout implements PageConfigurator {
 
