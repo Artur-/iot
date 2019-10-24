@@ -34,9 +34,20 @@ Sets up an in memory database for the whole application. In a real world applica
 
 ## Building all parts
 
+First build `components`, which is a module used by other parts
+
 ```
+cd components
 mvn clean install
+cd ..
 ```
+
+Build all the other parts
+```
+for dir in app bundle db floorplan roominfo ; do cd $dir ; mvn install ; cd .. ; done
+```
+or by running `mvn install` for each part separately
+
 
 ## Running the project
 
