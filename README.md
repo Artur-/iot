@@ -76,3 +76,17 @@ Open http://localhost:8080/iot-app/
 
 This assumes that your local Tomcat runs on port 8080
 
+## The Technical Details
+
+### Load web components only once
+
+Web components can only be defined once in the browser (the tag can only be defined once). A standard Vaadin application loads a JavaScript bundle which defines all components used in the application so if you deploy and use multiple applications they will all define `<vaadin-button>` and the page will fail. 
+
+To deal with this, the `bundle` module includes all used components (https://github.com/Artur-/iot/blob/master/bundle/src/main/java/org/vaadin/artur/microfront/bundle/Bundle.java) and all other application modules excludes all components in their webpack config (https://github.com/Artur-/iot/blob/master/app/webpack.config.js#L28). This ensures that e.g. `<vaadin-button>` is defined by the `bundle` file and not by any other module.
+
+### Exporting UI parts
+The main application and menu+navigation is defined in the `app` module. The floorplan view is defined in a separate module and the view is exported as a `<floorplan-view>` web component (https://github.com/Artur-/iot/blob/master/floorplan/src/main/java/org/artur/iot/view/floorplan/Floorplan.java#L18). To be able to navigate to this from the menu in the `app` module, a representation copmponent for this class is created in the `app` module: https://github.com/Artur-/iot/blob/master/app/src/main/java/org/artur/iot/view/floorplan/RemoteFloorplan.java#L14. This class defines the URL for the view (`@Route(value = "floorplan", layout = MainLayout.class)`) and the tag that is used in the `floorplan` module (`@Tag("floorplan-view")`). It also ensures that the JavaScript where the web component is defined (`/iot-floorplan/web-component/floorplan-view.js`) is loaded.
+
+For `<room-info>`, a similar approach is taken in the modules where the component is used, e.g. https://github.com/Artur-/iot/blob/master/app/src/main/java/org/artur/iot/RemoteRoomInfo.java#L11.
+
+
