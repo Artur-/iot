@@ -32,7 +32,7 @@ Used by `roominfo`, `floorplan` and `app`.
 
 ### bundle
 
-The shared JavaScript bundle used in the browser. Contains all components for the full application to avoid loading the same components for all different parts. This resolves both a performance issue (load button only once) and a technical limitation (the same web component / custom element / tag can only be defined once for a whole web page).
+The shared JavaScript bundle used in the browser. Contains all components for the full application to avoid loading the same components for all different parts. This resolves both a performance issue (load button only once) and a technical limitation (the same web component / custom element / tag can only be defined once for a whole web page) while improving end user usability by guaranteeing that the same components are used in all parts.
 
 ### db
 
