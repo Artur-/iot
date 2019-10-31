@@ -24,23 +24,20 @@ module.exports = merge(flowDefaults, {
           fileNameOfTheFlowGeneratedMainEntryPoint,
           "utf8"
         );
-//        console.log(original);
+
+        // Exclude component imports which are included in the "bundle" module
         const filtered = original
           .split("\n")
           .filter(row => {
-              if (row.startsWith("import $css")) 
-                return true;
-              if (row.startsWith("import '."))
-                return true;
-              if (row.startsWith("import 'Frontend/"))
-                return true;
-              if (row.startsWith("import "))
-                return false;
-              
-              return true;
-              }
-            ).join("\n");
-//        console.log(filtered);
+            if (row.startsWith("import $css")) return true;
+            if (row.startsWith("import '.")) return true;
+            if (row.startsWith("import 'Frontend/")) return true;
+            if (row.startsWith("import ")) return false;
+
+            return true;
+          })
+          .join("\n");
+
         fs.writeFileSync(
           filteredFileNameOfTheFlowGeneratedMainEntryPoint,
           filtered
