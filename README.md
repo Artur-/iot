@@ -58,30 +58,43 @@ or by running `mvn install` for each part separately
 
 ## Running the project
 
-The project has been tested using Apache Tomcat 8.5.47 and 9.0.27. Older versions might have strange issues.
+The project has been tested using Apache Tomcat 8.5.48 and 9.0.27. Older versions might have strange issues. Note that we are giving the command lines for macOS; they should be the same on Linux and would need to be adapted for Microsoft Windows.
 
-First you need to start the H2 DB. This is accessed by multiple war files so
-it should be started outside the servlet container:
+First you need to download and run the Tomcat application server:
+```
+pushd ~
+curl https://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/tomcat/tomcat-8/v8.5.58/bin/apache-tomcat-8.5.58.tar.gz --output apache-tomcat-8.5.58.tar.gz
+tar zxf apache-tomcat-8.5.58.tar.gz
+ln -s apache-tomcat-8.5.58 tomcat-folder
+cd tomcat-folder/bin
+./startup.sh
+popd
+```
+
+Next you need to start the H2 DB. It should have been downloaded to your local .m2 directory as a side-effect of the previous Maven (```mvn```) commands.
+This is accessed by multiple war files so it should be started from the shell (that is, outside the servlet container). Note the ampersand so that a separate process is spawned and we can continue typing in our shell:
 
 ```
-java -cp ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar org.h2.tools.Server -ifNotExists
+java -cp ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar org.h2.tools.Server -ifNotExists &
 ```
 
 In real cases, you would use Postgres, MySQL or some other external database and configure that in `*/src/main/resources/application.properties` instead of H2.
 
-When the DB is running, deploy the `db` war to your server. This should be deployed first as it initializes the database tables.
+When the DB is running, deploy the `db` war file to your server. This should be deployed first as it initializes the database tables.
 
 ```
 cp db/target/*.war ~/tomcat-folder/webapps/
 ```
 
-Then deploy the rest of the war files
+Then deploy the rest of the war files (web applications):
 
 ```
 cp */target/*.war ~/tomcat-folder/webapps/
 ```
 
 ## Testing
+
+Wait a few seconds to allow Tomcat to start up the several web applications.
 
 Open http://localhost:8080/iot-app/
 
